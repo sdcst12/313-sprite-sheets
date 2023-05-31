@@ -9,6 +9,9 @@ Objectives
 Introduction
 Sprites are computer graphics that can be moved and manipulated on screen.  Today we will look at incorporating sprites that are taken from a sprite sheet.  A sprite sheet is a collection of images that generally represent one character. By rapidly changing between images, we can give the impression of animation, much like using a flip book.
 
+Watch this video about sprites and sprite sheets:
+https://www.youtube.com/watch?v=F4lptpFSB_I
+
 The process of animation follows a plan like this:
 1. Load several images into memory as a list
 2. Display one of those images as the canvas object images
