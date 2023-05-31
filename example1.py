@@ -1,40 +1,50 @@
-#!python3
-
-# A basic canvas drawing using some geometric shapes
-
 import tkinter as tk
-import random
-import time
+from PIL import Image,ImageTk
+
+#settings:
+x = 3 # Sprite Sheet Column (0-3)
+y = 3 # Sprite Sheet Row (0-7)
 
 w = tk.Tk()
-w.geometry("600x400")
-w.title("sample")
+w.attributes("-topmost",True)
+w.geometry("400x300")
 
-c = tk.Canvas(width=550,height=450,background="#cccccc",bd="2")
+c = tk.Canvas(width=380,height=280)
 c.pack()
+i=0
+def getSprite(x,y):
+# sk.png sprite sheet is 384 x 384 pixels, with 12 across and 8 down.
+# each image is 32 x 48 pixels    
+    img = Image.open("assets/skt.png").convert("RGBA")
+    xi = x*32
+    yi = y*48
+    img2 = img.crop([xi,yi,xi+32,yi+48])
+    return ImageTk.PhotoImage(img2)    
+
+def skelUpdate():
+    global i
+
+    i+=1
+    i%=len(skel)
+    c.itemconfig(img,image=skel[i])
+    w.after(200,skelUpdate)
+image = tk.PhotoImage(file="assets/skt.png")
 
 
-def randomColor():
-    #converts rgb values to hex color code
-    r = random.randint(0,255)
-    g = random.randint(0,255)
-    b = random.randint(0,255)    
-    return '#{:02x}{:02x}{:02x}'.format(r, g, b)
+skel=[]
+#There are 3 sprite images:
+# left foot forward
+# neutral
+# right foot forward
+# we load all 3 sprites and then also add in the neutral as a 4th sprite
+for i in range(3):
+    firstX = i + 3*x # there are 3 sprites in an animation
+    skel.append( getSprite(firstX,y))
+skel.append( getSprite(firstX + 1,y))
 
-# create 10 random objects on the canvas
-# create an empty list
-# iterate 10 times to populate list
-#   create random coordinates
-#   add a rectangle to the list of objects by appending it to the list
-objects = []
-colors = ['blue','green','red','yellow','white','black','#888888',"#ffff77"]
-for i in range(10):
-    x1 = random.randint(0,500)
-    y1 = random.randint(0,400)
-    x2 = x1 + random.randint(20,40)
-    y2 = y1 + random.randint(20,40)
-    objects.append( c.create_rectangle(x1,y1,x2,y2,fill=randomColor() ) )
-
+#create the sprite with the first image and then update it after 200 milliseconds
+img = c.create_image(32,48,image=skel[0])
+w.after(200,skelUpdate)
 
 
 w.mainloop()

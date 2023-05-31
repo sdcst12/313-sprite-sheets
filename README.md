@@ -1,13 +1,28 @@
-# 310-tkinter-review
-## Review of creating a gui with tkinter
+# 313 Sprite Sheets
 
-TKinter is an object oriented interface that uses a CLASS to build a framework for a GUI Interface.  We will be using tkinter  to demonstrate how classes can be instantiated to build objects, and how those objects can interact with other objects within a program.
+Objectives
+* Use a sprite sheet to collect images for animation
+* Incorporate an image object in a canvas
+* Update the image using tkCanvas.itemconfig
+* Use the tkObject.after() method to schedule functions
 
-Today we will discuss the use of the Canvas widget for drawing shapes and will bind keystroke events that will update the position of objects on the screen.
+Introduction
+Sprites are computer graphics that can be moved and manipulated on screen.  Today we will look at incorporating sprites that are taken from a sprite sheet.  A sprite sheet is a collection of images that generally represent one character. By rapidly changing between images, we can give the impression of animation, much like using a flip book.
 
-* Create Canvas objects in the tkinter window
-* Add simple shapes to the Canvas
-* Add image icons to the Canvas
-* Bind callback functions to keys
-* Use callback functions to update objects on the canvas
+The process of animation follows a plan like this:
+1. Load several images into memory as a list
+2. Display one of those images as the canvas object images
+3. Set a timeout or interval, after which we run a function to change the image
+4. We track the state of the image, and decide which is the next image to display based on what the current image is.
+5. In the function, we set another interval to change the image again.
 
+We will use the tkObject.after() method to set the timeout or interval time and function to run.
+
+Task 1
+Changing Sprites
+Create a canvas where you can move a skeleton (taken from skt.png) using the arrow keys.  You can use the code in the example1.py file to help you choose which images to use for your sprite.
+Have the skeleton change to face the direction in which it is moving. You will not be using tk.after() for this, but instead include the image change with tk.itemconfig in your key bindings.
+
+Task 2
+Animating Sprites
+Repeat Task 1, but this time, include an animated sprite.  This will incorporate some of the code in your example1 file with the code from task1.

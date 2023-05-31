@@ -1,15 +1,7 @@
-import tkinter as tk
+#!python3
 """
 Task 1
-Read the map1.txt file and convert to a map that you can navigate a
-rectangle object through.
+Changing Sprites
+Create a canvas where you can move a skeleton (taken from skt.png) using the arrow keys.  You can use the code in the example1.py file to help you choose which images to use for your sprite.
+Have the skeleton change to face the direction in which it is moving. You will not be using tk.after() for this, but instead include the image change with tk.itemconfig in your key bindings.
 """
-w = tk.Tk()
-w.geometry("925x475")
-w.attributes('-topmost',True)
-c = tk.Canvas(height=475,width=900,bg="#ffdddd")
-c.pack()
-f = open('map1.txt')
-
-
-w.mainloop()
